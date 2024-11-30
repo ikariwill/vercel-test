@@ -8,6 +8,12 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
 
+include("agenda.php");
+
+$app->group('/private', function () use ($app) {
+  include("home.php");
+})->add($headers);
+
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
   $name = $args['name'];
   $response->getBody()->write("Hello, $name");
